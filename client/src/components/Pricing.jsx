@@ -8,26 +8,21 @@ import {
 
 const CATEGORY_META = {
   hourly: {
-    title: 'Hourly Support Rates',
-    desc: 'Our cost-effective website management & support hourly rates. Choose your plan, fill out the form, and send payment via card or PayPal.',
+    title: 'VA Services: Flat Monthly Retainer',
+    desc: 'Instead of unpredictable hourly bills, we bundle a set amount of operational capacity into a flat monthly retainer. This gives you predictable expenses and guaranteed dedicated support.',
     footnote:
-      'Technical support hours for WordPress mini tasks (30 min–1 hr). Unused hours do not carry over. Maximum 3 hours per business day.',
+      'Unused capacity does not roll over to the next month. A flat retainer rewards efficiency—meaning you still get full value even if we finish your tasks faster.',
   },
   packages: {
-    title: 'Custom Website Packages',
+    title: 'Web Development: Flat Per-Project Pricing',
     anchor: 'packages',
-    desc: 'Professional custom WordPress website bundled packages. Choose your package, fill out the form, and send 50% down payment.',
+    desc: 'Because building a website has a clear beginning, middle, and end, we charge a flat project fee rather than an unpredictable hourly rate.',
     footnote:
-      'Branded websites launch in 1–4 weeks in 3 phases: design, development, then QA and launch tutorial.',
+      'We use "Starting At" numbers to give you a baseline and ensure flexibility based on complexity.',
     includes:
-      'All site packages include: Custom brand design • Optimised WordPress theme • Mobile responsive • SEO ready • Social integrations • Blog • Up to 2 revision rounds •',
+      'All site packages include: Custom design • Modern Frontend Frameworks (React, Next.js) • High Performance • Mobile responsive • SEO ready • Full Source Code Ownership •',
   },
-  hybrid: {
-    title: 'Site Hybrid',
-    anchor: 'hybrid',
-    desc: null,
-    footnote: null,
-  },
+
   other: {
     title: 'Other Services',
     anchor: 'other',
@@ -148,8 +143,7 @@ export default function Pricing({ pricing, loading }) {
             {meta.includes}{' '}
             <a href={EXTERNAL_LINKS.hosting} target="_blank" rel="noreferrer">
               Click here for hosting
-            </a>{' '}
-            [affiliate].
+            </a>.
           </div>
         )}
 

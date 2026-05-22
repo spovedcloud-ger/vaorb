@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { EXTERNAL_LINKS } from '../data/siteContent';
+import { EXTERNAL_LINKS, ASSETS } from '../data/siteContent';
 
 export default function Header({ scrolled }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,17 +52,7 @@ export default function Header({ scrolled }) {
                   Contact
                 </a>
               </li>
-              <li className="nav-item nav-promo">
-                <a
-                  className="btn btn-singin"
-                  href={EXTERNAL_LINKS.aiAudit}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={closeMenu}
-                >
-                  AI Audit [pay &gt; book a call]: <s>$900</s> = $300 (PROMO)
-                </a>
-              </li>
+
             </ul>
           </div>
         </div>
@@ -97,7 +87,7 @@ export default function Header({ scrolled }) {
           </div>
           <div className="col-lg-6 col-md-12 col-xs-12 p-0">
             <div className="intro-img">
-              <img src="https://www.annbuendia.com/ablanding/img/intro.png" alt="Ann Buendia digital solutions" />
+              <img src={ASSETS.intro} alt="Carl Falle digital solutions" />
             </div>
           </div>
         </div>

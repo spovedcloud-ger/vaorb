@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'production') {
   // Developer sanity route
   app.get('/', (req, res) => {
     res.json({
-      name: 'AnnBuendia.com API Backend',
+      name: 'Carl Falle API Backend',
       status: 'active',
       mode: process.env.NODE_ENV || 'development',
       documentation: '/api/pricing'

@@ -45,7 +45,7 @@ export default function AdminPanel({
         ) : (
           <div>
             <div className="admin-header-row">
-              <h2>AnnBuendia.com Administrative Hub</h2>
+              <h2>Carl Falle Administrative Hub</h2>
               <div>
                 <button type="button" className="btn btn-border" onClick={onLogout}>
                   Log Out

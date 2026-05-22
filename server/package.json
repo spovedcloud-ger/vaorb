@@ -1,7 +1,7 @@
 {
   "name": "vaorb-server",
   "version": "1.0.0",
-  "description": "Express backend server for AnnBuendia landing page",
+  "description": "Express backend server for Carl Falle landing page",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

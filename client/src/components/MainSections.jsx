@@ -109,7 +109,7 @@ export function ShowcaseBanner({ title, description, ctaLabel, ctaHref = '#book'
               <div className="desc-text">
                 <p>{description}</p>
               </div>
-              <div className="header-button">
+              <div style={{ display: 'flex', justifyContent: 'center', width: '100%', marginTop: '20px' }}>
                 <a
                   href={ctaHref}
                   className="btn btn-border page-scroll"
@@ -128,12 +128,12 @@ export function ShowcaseBanner({ title, description, ctaLabel, ctaHref = '#book'
 
 export function FeaturesSection() {
   const features = [
-    { icon: 'lni-coffee-cup', title: 'Branding', text: 'Logo design, corporate identity, illustration, print collateral, web page, brochure, and any type of graphic design.' },
-    { icon: 'lni-briefcase', title: 'Website', text: 'Stylish and fully functional custom WP sites cohesively designed with your brand that drives engagements.' },
-    { icon: 'lni-invention', title: 'Sales Funnel', text: 'High-converting lead generation or email marketing with landing page, opt-in form, paid ads, plus A/B testing.' },
-    { icon: 'lni-layers', title: 'Ecommerce', text: 'Paypal, Woocommerce, Shopify, etc. An online business that accepts online payments for digital or physical goods.' },
-    { icon: 'lni-reload', title: 'Paid Ads', text: 'Tactical advertisement/PPC with Google Ads, Facebook Ads, Linkedin Ads, and more.' },
-    { icon: 'lni-support', title: 'And More', text: 'Tech support, designers, web devs, sales and marketing, AI automation, subscription, SEO, eCourse, etc.' },
+    { icon: 'lni-briefcase', title: 'Virtual Assistance', text: 'Executive admin support, calendar & inbox management, data entry, and workflow coordination.' },
+    { icon: 'lni-code', title: 'Web Development', text: 'Custom web applications and high-performance frontends built with the MERN stack (React, Node.js).' },
+    { icon: 'lni-cog', title: 'API & Integrations', text: 'Connecting third-party tools, CRM setups, and custom databases for seamless business operations.' },
+    { icon: 'lni-layers', title: 'System Automation', text: 'Automating repetitive tasks, integrating chatbots, and building tailored operational workflows.' },
+    { icon: 'lni-stats-up', title: 'Data Management', text: 'Cross-checking records, handling overdue accounts, invoice tracking, and detailed reporting.' },
+    { icon: 'lni-support', title: 'Tech Support', text: 'On-demand technical assistance, platform maintenance, and scalable digital solutions.' },
   ];
 
   return (
@@ -143,7 +143,7 @@ export function FeaturesSection() {
           <div className="col-lg-12">
             <div className="features-text section-header text-center">
               <p className="features-quote">
-                &ldquo;You know you need a digital contractor... Or you can go with me, who&apos;s been creating beautiful, high-converting websites for over a decade.&rdquo;
+                &ldquo;You know you need a reliable partner... Or you can go with me, who&apos;s been managing operations and building custom tech solutions for businesses like yours.&rdquo;
               </p>
               <h2 className="section-title">Service Offerings</h2>
               <div className="desc-text">

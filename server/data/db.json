@@ -1,9 +1,40 @@
 {
-  "inquiries": [],
+  "inquiries": [
+    {
+      "_id": "mphf3h53g9vht",
+      "name": "asd",
+      "email": "asdkasdm@gmail.com",
+      "budget": "123",
+      "skypeOrPhone": "123",
+      "message": "asdqwrqwqwrqwtqwt",
+      "status": "new",
+      "createdAt": "2026-05-22T21:14:09.927Z"
+    },
+    {
+      "_id": "mphfb5c8lnmkz",
+      "name": "asd",
+      "email": "spovedcloud.ger@gmail.com",
+      "budget": "",
+      "skypeOrPhone": "",
+      "message": "qwgqweasfasg",
+      "status": "new",
+      "createdAt": "2026-05-22T21:20:07.880Z"
+    },
+    {
+      "_id": "mphfdxlc5sr4w",
+      "name": "asd",
+      "email": "asjdaoisjd@gmail.com",
+      "budget": "asdpoaskd",
+      "skypeOrPhone": "",
+      "message": "qwqpowknemqwlwg",
+      "status": "new",
+      "createdAt": "2026-05-22T21:22:17.808Z"
+    }
+  ],
   "analytics": {
-    "views": 68,
-    "contactSubmissions": 0,
-    "bookingClicks": 12
+    "views": 148,
+    "contactSubmissions": 3,
+    "bookingClicks": 37
   },
   "pricing": [
     {

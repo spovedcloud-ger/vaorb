@@ -66,25 +66,10 @@ export default function Footer({ onOpenAdmin }) {
                         Earn
                       </button>
                       &nbsp;&nbsp;|&nbsp;&nbsp;© 2015-2026&nbsp;&nbsp;
-                      <a href="https://www.annbuendia.com" rel="nofollow">
-                        AnnBuendia.com
+                      <a href="https://www.carlfalle.com" rel="nofollow">
+                        Carl Falle
                       </a>
-                      &nbsp;&nbsp;aka ABD x ABC&nbsp;&nbsp;|&nbsp;&nbsp;
-                      <a href={EXTERNAL_LINKS.linkedin} target="_blank" rel="noreferrer">
-                        LI
-                      </a>{' '}
-                      <a href={EXTERNAL_LINKS.youtube} target="_blank" rel="noreferrer">
-                        YT
-                      </a>{' '}
-                      <a href={EXTERNAL_LINKS.instagram} target="_blank" rel="noreferrer">
-                        IG
-                      </a>{' '}
-                      <a href={EXTERNAL_LINKS.facebook} target="_blank" rel="noreferrer">
-                        FB
-                      </a>{' '}
-                      <a href={EXTERNAL_LINKS.tarot} target="_blank" rel="noreferrer">
-                        TA
-                      </a>
+
                     </p>
                   </div>
                 </div>

@@ -18,7 +18,7 @@ exports.login = async (req, res) => {
       admin: true
     };
 
-    const secret = process.env.JWT_SECRET || 'ann_buendia_strategic_secret_token_key_2026';
+    const secret = process.env.JWT_SECRET || 'carl_falle_strategic_secret_token_key_2026';
     
     jwt.sign(
       payload,
@@ -26,7 +26,7 @@ exports.login = async (req, res) => {
       { expiresIn: '24h' },
       (err, token) => {
         if (err) throw err;
-        res.json({ token, message: 'Welcome back, Admin Ann!' });
+        res.json({ token, message: 'Welcome back, Admin Carl Falle!' });
       }
     );
   } catch (error) {
