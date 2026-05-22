@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --brand-green: #3ecf8e;
-  --brand-teal: #1abc9c;
-  --brand-dark: #00715b;
-  --gradient-hero: linear-gradient(95deg, #00715b 40%, #1abc9c 100%);
-  --gradient-nav: linear-gradient(95deg, #1abc9c 40%, #00715b 100%);
+  --brand-green: #076fab;
+  --brand-teal: #076fab;
+  --brand-dark: #07608f;
+  --gradient-hero: linear-gradient(95deg, #076fab 40%, #07608f 100%);
+  --gradient-nav: linear-gradient(95deg, #07608f 40%, #076fab 100%);
   --text-body: #5e629c;
   --footer-bg: #212121;
   --footer-bg-2: #2d2d2d;
