@@ -1,0 +1,9 @@
+/* Component-specific overrides */
+.navbar-collapse.show {
+  display: block !important;
+}
+
+.pricing-table .btn.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
