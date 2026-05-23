@@ -44,7 +44,15 @@ function App() {
       const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
+
+        // Account for fixed header (Header uses fixed-top navbar)
+        const header = document.querySelector('.navbar.fixed-top') || document.querySelector('.navbar');
+        const headerOffset = header?.offsetHeight ?? 70;
+
+        const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+        const scrollToY = Math.max(0, targetTop - headerOffset);
+
+        window.scrollTo({ top: scrollToY, behavior: 'smooth' });
       }
     };
     document.addEventListener('click', onAnchorClick);

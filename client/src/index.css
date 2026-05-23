@@ -22,6 +22,14 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Improve anchor scrolling with fixed header */
+#packages,
+#pricing,
+#services,
+#contact {
+  scroll-margin-top: 110px;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   color: var(--text-body);
@@ -442,6 +450,57 @@ img {
 
 .pricing-table h3 {
   color: #333;
+}
+
+/* Reveal "Buy This" CTA on hover of the plan card */
+.plan-buy-cta {
+  /* Center the same `.btn` styles already defined in the app */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  pointer-events: none;
+}
+
+/* Make sure the revealed CTA keeps button spacing/placement */
+.plan-buy-cta .btn {
+  display: inline-block;
+  margin-top: 0;
+}
+
+/* When revealed, make sure the CTA uses the filled (bold) button look */
+.plan-buy-cta .btn-border,
+.plan-buy-cta .btn-common {
+  background: var(--brand-green);
+  color: #fff;
+  border-color: var(--brand-green);
+}
+
+.plan-buy-cta .btn-border:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.pricing-table:hover .plan-buy-cta {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Touch devices: show CTA by default */
+@media (hover: none) {
+  .plan-buy-cta {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
 }
 
 .pricing-table h1 {

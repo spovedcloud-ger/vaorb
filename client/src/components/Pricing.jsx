@@ -62,14 +62,15 @@ function PricingCard({ plan }) {
           {plan.comingSoon ? (
             <span className="btn btn-border disabled">coming soon</span>
           ) : (
-            <a
-              href={getStartedUrl(plan.buyPlan)}
-              target="_blank"
-              rel="noreferrer"
-              className={btnClass}
-            >
-              Buy This
-            </a>
+            <div className="plan-buy-cta">
+              <a
+                href={getStartedUrl(plan.buyPlan)}
+                rel="noreferrer"
+                className={btnClass}
+              >
+                Buy This
+              </a>
+            </div>
           )}
         </div>
       </div>

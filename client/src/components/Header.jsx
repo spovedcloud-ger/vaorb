@@ -42,11 +42,11 @@ export default function Header({ scrolled }) {
                   Rates
                 </a>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a className="nav-link page-scroll" href="#packages" onClick={closeMenu}>
                   Packages
                 </a>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <a className="nav-link page-scroll" href="#contact" onClick={closeMenu}>
                   Contact

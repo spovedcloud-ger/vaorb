@@ -32,9 +32,9 @@
     }
   ],
   "analytics": {
-    "views": 148,
+    "views": 304,
     "contactSubmissions": 3,
-    "bookingClicks": 37
+    "bookingClicks": 62
   },
   "pricing": [
     {
@@ -215,5 +215,6 @@
         "Streamlines lead conversion 24/7"
       ]
     }
-  ]
+  ],
+  "bookings": []
 }
