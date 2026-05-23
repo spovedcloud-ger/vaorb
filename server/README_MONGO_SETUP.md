@@ -1,24 +1,39 @@
 # MongoDB Atlas setup (VA0rbit)
 
-This backend uses **`MONGO_URI`** from `server/.env`.
+The backend connects to **MongoDB Atlas** using `MONGO_URI` in `server/.env`.
 
-## 1) Get your MongoDB Atlas connection string
-From Atlas → your cluster (VA0rbit) → **Connect** → **Drivers** → **Node.js** (or copy the full connection string).
+## Quick setup
 
-You should get something like:
+1. Copy `server/.env.example` → `server/.env`
+2. Set your Atlas password in the connection string:
 
-`mongodb+srv://<username>:<password>@va0rbit.4axc3iu.mongodb.net/?appName=VA0rbit`
+```env
+MONGO_URI=mongodb+srv://dbvaorb:<db_password>@va0rbit.4axc3iu.mongodb.net/vaorb?retryWrites=true&w=majority&appName=VA0rbit
+```
 
-## 2) Put it into `server/.env`
-Edit `server/.env` and set:
+3. In Atlas → **Network Access**, allow your IP (or `0.0.0.0/0` for development).
+4. Start the API:
 
-- `MONGO_URI=<PASTE_CONNECTION_STRING_HERE>`
-- `PORT=5000`
+```bash
+npm run server
+```
 
-## 3) Restart the server
-Stop and run the server again so it picks up the env var.
+Or sync collections manually:
 
-Expected behavior:
-- If the connection works, the server will log `MongoDB connected successfully!`
-- If it fails, it will fall back to `server/data/db.json`.
+```bash
+npm run sync-db --prefix server
+```
 
+## Expected logs
+
+- Success: `MongoDB connected successfully! (vaorb)`
+- Failure: falls back to `server/data/db.json` (local JSON mode)
+
+## Collections
+
+| Collection   | Purpose                          |
+|-------------|-----------------------------------|
+| `pricings`  | Rate cards (seeded on first run)  |
+| `inquiries` | Contact form submissions          |
+| `bookings`  | Consultation bookings             |
+| `analytics` | Page views & click tracking       |

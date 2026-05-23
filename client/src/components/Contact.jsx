@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ASSETS, EXTERNAL_LINKS } from '../data/siteContent';
+import { ASSETS, EXTERNAL_LINKS, CONTACT_EMAIL } from '../data/siteContent';
 import BookingCalendar from './BookingCalendar';
 
 export default function Contact({ onSubmit, onBookingClick }) {
@@ -54,7 +54,7 @@ export default function Contact({ onSubmit, onBookingClick }) {
     } catch {
       setFormStatus({
         type: 'error',
-        text: 'Server connection failure. Please email annbuendia023@gmail.com',
+        text: `Server connection failure. Please email ${CONTACT_EMAIL}`,
       });
     } finally {
       setIsSubmitting(false);
@@ -73,9 +73,8 @@ export default function Contact({ onSubmit, onBookingClick }) {
                   <p>
                     The best way to reach us is through direct email:{' '}
                     <a href={EXTERNAL_LINKS.emailPrimary} target="_blank" rel="noreferrer">
-                      carlfalle023@gmail.com
-                    </a>{' '}
-                    [hello@carlfalle.com]
+                      {CONTACT_EMAIL}
+                    </a>
                   </p>
                   <p>
                     Or, by filling out the form below. Response time is almost immediately during

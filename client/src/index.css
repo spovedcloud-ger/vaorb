@@ -4,8 +4,9 @@
   --brand-green: #076fab;
   --brand-teal: #076fab;
   --brand-dark: #07608f;
+  --navbar-bg: #076fab;
   --gradient-hero: linear-gradient(95deg, #076fab 40%, #07608f 100%);
-  --gradient-nav: linear-gradient(95deg, #07608f 40%, #076fab 100%);
+  --gradient-nav: #076fab;
   --text-body: #5e629c;
   --footer-bg: #212121;
   --footer-bg-2: #2d2d2d;
@@ -132,11 +133,12 @@ img {
   left: 0;
   right: 0;
   z-index: 1000;
+  background: var(--navbar-bg) !important;
   transition: background 0.3s ease;
 }
 
 .navbar.menu-bg {
-  background: var(--gradient-nav) !important;
+  background: var(--navbar-bg) !important;
 }
 
 .navbar .container {
@@ -146,6 +148,21 @@ img {
   min-height: 70px;
 }
 
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+  margin-left: -12px;
+  padding: 0;
+  background: var(--navbar-bg);
+}
+
+.navbar-brand img {
+  height: 64px;
+  width: auto;
+  display: block;
+}
+
 .navbar-toggler {
   display: none;
   background: transparent;
@@ -153,7 +170,6 @@ img {
   color: #fff;
   font-size: 1.5rem;
   cursor: pointer;
-  margin-right: auto;
 }
 
 .navbar-nav {

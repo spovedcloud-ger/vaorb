@@ -24,6 +24,18 @@ const PricingSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
+  priceSuffix: {
+    type: String,
+    trim: true
+  },
+  featured: {
+    type: Boolean,
+    default: false
+  },
+  buyPlan: {
+    type: String,
+    trim: true
+  },
   period: {
     type: String,
     required: true,

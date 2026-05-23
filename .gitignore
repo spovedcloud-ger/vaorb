@@ -5,6 +5,7 @@ node_modules/
 .env
 .env.local
 .env.*.local
+server/.env
 
 # Local secrets / setup notes (may contain credentials)
 server/MONGO_URI_INSTRUCTIONS_LOCKED.txt

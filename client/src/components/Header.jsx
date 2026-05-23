@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { EXTERNAL_LINKS, ASSETS } from '../data/siteContent';
+import logoImg from '../assets/TheVAorbitMAIN2.png';
 
 export default function Header({ scrolled }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,6 +16,9 @@ export default function Header({ scrolled }) {
 
       <nav className={`navbar navbar-expand-md fixed-top scrolling-navbar ${scrolled ? 'menu-bg' : ''}`}>
         <div className="container">
+          <a className="navbar-brand" href="#home" aria-label="The VA Orbit home">
+            <img src={logoImg} alt="The VA Orbit" />
+          </a>
           <button
             type="button"
             className="navbar-toggler"

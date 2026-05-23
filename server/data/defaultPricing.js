@@ -1,33 +1,5 @@
-export const ASSETS = {
-  intro: 'https://www.annbuendia.com/ablanding/img/intro.png',
-  business: 'https://www.annbuendia.com/ablanding/img/business/business-img.png',
-  contact: 'https://www.annbuendia.com/ablanding/img/contact/01.png',
-  favicon: 'https://www.annbuendia.com/ablanding/img/ab-favicon.png',
-};
-
-export const CONTACT_EMAIL = 'accounts@thevaorbit.com';
-
-export const EXTERNAL_LINKS = {
-  about: '#about',
-  getQuote: '#book',
-
-  hosting: 'https://vercel.com/domains',
-  tools: 'https://annbuendia.com/go',
-  learnMore: '#book',
-  zcal: 'https://zcal.co/i/bAG6PBro?embed=1&embedType=inline&embedVersion=1.0.2&embedDomain=annbuendia.com',
-  emailPrimary: `mailto:${CONTACT_EMAIL}`,
-  emailHello: `mailto:${CONTACT_EMAIL}`,
-  linkedin: 'https://www.linkedin.com/in/ann~buendia/',
-  youtube: 'https://www.youtube.com/@ann.buendia',
-  instagram: 'https://www.instagram.com/annbuendia023/',
-  facebook: 'https://www.facebook.com/annbuendia025',
-  tarot: 'https://anskey.net/tarotai/',
-};
-
-export const getStartedUrl = (plan) =>
-  `#book`;
-
-export const DEFAULT_PRICING = [
+/** Default pricing plans — synced to MongoDB on connect when collection is empty. */
+module.exports = [
   {
     planType: 'essential-orbit',
     title: 'Essential Orbit',
@@ -127,7 +99,6 @@ export const DEFAULT_PRICING = [
       'Advanced data & tailored features',
     ],
   },
-
   {
     planType: 'branding',
     title: 'Branding',
@@ -174,18 +145,3 @@ export const DEFAULT_PRICING = [
     ],
   },
 ];
-
-export const PRICING_CATEGORIES = [
-  { id: 'hourly', label: 'VA Services: Flat Monthly Retainer', anchor: 'rates' },
-  { id: 'packages', label: 'Web Development', anchor: 'packages' },
-  { id: 'other', label: 'Other Services', anchor: 'other' },
-];
-
-export const filterPricing = (pricing, category) => {
-  const groups = {
-    hourly: ['essential-orbit', 'total-operations', 'growth-orbit'],
-    packages: ['single-landing-page', 'full-multi-page', 'mern-custom-app'],
-    other: ['branding', 'marketing', 'automation'],
-  };
-  return pricing.filter((p) => groups[category]?.includes(p.planType));
-};

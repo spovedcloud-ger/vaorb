@@ -13,7 +13,7 @@ const MONTHS = [
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 const CALL_TYPES = [
-  { value: 'discovery', label: 'General Discovery Call', icon: '🔍', duration: '45 min' },
+  { value: 'discovery', label: 'General Discovery Call', icon: '🔍', duration: '15 min' },
   { value: 'strategy', label: 'AI Strategy Session', icon: '🤖', duration: '30 min' },
   { value: 'consultation', label: 'Flash Site Consultation', icon: '⚡', duration: '15 min' },
 ];

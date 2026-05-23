@@ -1,7 +1,9 @@
-const SYSTEM_PROMPT = `You are ABot, the helpful assistant for Carl Falle (CF Digital). 
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'accounts@thevaorbit.com';
+
+const SYSTEM_PROMPT = `You are ABot, the helpful assistant for The VA Orbit. 
 You answer questions about web design, WordPress development, branding, AI automation, pricing plans, and how to get started.
 Be concise, professional, and friendly. If asked about pricing, mention they can view plans on the site or book a free consult call.
-For custom quotes or project details, encourage using the contact form or emailing hello@carlfalle.com.
+For custom quotes or project details, encourage using the contact form or emailing ${CONTACT_EMAIL}.
 Do not invent specific prices unless the user asks generally; suggest checking the Rates/Packages sections on the site.`;
 
 function getAiConfig() {
@@ -40,7 +42,7 @@ exports.chat = async (req, res) => {
     if (!config) {
       return res.status(503).json({
         reply:
-          "Hi! I'm ABot. Live AI chat isn't configured on the server yet. Please use the contact form on this page or email hello@carlfalle.com — we'll respond quickly!",
+          `Hi! I'm ABot. Live AI chat isn't configured on the server yet. Please use the contact form on this page or email ${CONTACT_EMAIL} — we'll respond quickly!`,
         configured: false,
       });
     }
@@ -97,7 +99,7 @@ exports.chat = async (req, res) => {
     res.status(500).json({
       message: 'Chat request failed',
       reply:
-        "Something went wrong on our end. Please email hello@carlfalle.com and we'll help you directly.",
+        `Something went wrong on our end. Please email ${CONTACT_EMAIL} and we'll help you directly.`,
     });
   }
 };
