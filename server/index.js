@@ -47,18 +47,22 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Boot HTTP Server
-const server = app.listen(PORT, () => {
-  console.log(`===================================================`);
-  console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode`);
-  console.log(`HTTP endpoint listening at: http://localhost:${PORT}`);
-  console.log(`===================================================`);
-});
+// Boot HTTP Server (local dev only — Vercel uses api/index.js serverless handler)
+if (!process.env.VERCEL) {
+  const server = app.listen(PORT, () => {
+    console.log(`===================================================`);
+    console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode`);
+    console.log(`HTTP endpoint listening at: http://localhost:${PORT}`);
+    console.log(`===================================================`);
+  });
 
-server.on('error', (err) => {
-  if (err.code === 'EADDRINUSE') {
-    console.error(`\nPort ${PORT} is already in use. Stop the old server or run: npm run kill-ports\n`);
-    process.exit(1);
-  }
-  throw err;
-});
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(`\nPort ${PORT} is already in use. Stop the old server or run: npm run kill-ports\n`);
+      process.exit(1);
+    }
+    throw err;
+  });
+}
+
+module.exports = app;

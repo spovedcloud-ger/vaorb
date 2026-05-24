@@ -21,6 +21,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 /* Improve anchor scrolling with fixed header */
@@ -109,7 +110,7 @@ img {
 /* Hero / Header */
 .hero-area {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero-area .overlay {
@@ -137,8 +138,10 @@ img {
   transition: background 0.3s ease;
 }
 
-.navbar.menu-bg {
+.navbar.menu-bg,
+.navbar.navbar-scrolled {
   background: var(--navbar-bg) !important;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
 }
 
 .navbar .container {
@@ -231,6 +234,18 @@ img {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+.header-button .btn-border-filled {
+  border: 2px solid var(--brand-dark);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.header-button .btn-border-filled:hover {
+  border-color: var(--brand-green);
+  background: #fff;
+  color: var(--brand-dark);
+  box-shadow: 0 4px 14px rgba(7, 111, 171, 0.35);
 }
 
 .intro-img {
@@ -362,29 +377,43 @@ img {
 }
 
 .feature-item {
-  padding: 2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.75rem 1.5rem;
   min-height: 180px;
   border: 1px solid #eee;
   background: #fff;
+  height: 100%;
 }
 
 .feature-item h4 {
   color: #333;
   margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.feature-item p {
+  color: var(--text-body);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin: 0;
 }
 
 .feature-icon {
+  flex-shrink: 0;
   font-size: 2rem;
   color: var(--brand-green);
-  margin-right: 1rem;
+  line-height: 1;
 }
 
 .feature-info {
-  overflow: hidden;
+  flex: 1;
+  min-width: 0;
 }
 
 .float-left {
-  float: left;
+  float: none;
 }
 
 .featured-border1 {
@@ -743,6 +772,45 @@ button.bpw-widget-btn.bpw-floating-button {
   z-index: 950;
 }
 
+/* Botpress chat — circular logo frame */
+.bpw-header-container .bpw-header-avatar,
+.bpw-header-avatar,
+.bpw-bot-avatar {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  border: 2px solid #076fab !important;
+  box-shadow: 0 2px 10px rgba(7, 111, 171, 0.35) !important;
+  flex-shrink: 0 !important;
+  background-image: url('/assets/THEVAURL.png') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.bpw-header-container .bpw-header-avatar img,
+.bpw-header-avatar img,
+.bpw-bot-avatar img,
+.bpw-message-avatar img {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+}
+
+.bpw-message-avatar {
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(7, 111, 171, 0.4) !important;
+}
+
 /* Admin overlay */
 .admin-overlay {
   position: fixed;
@@ -827,15 +895,55 @@ button.bpw-widget-btn.bpw-floating-button {
 
 /* Responsive */
 @media (max-width: 991px) {
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1100;
+    padding-top: env(safe-area-inset-top, 0);
+  }
+
+  .navbar .container {
+    flex-wrap: wrap;
+    position: relative;
+    align-items: center;
+    min-height: 64px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .navbar-brand {
+    margin-left: 0;
+    z-index: 2;
+  }
+
+  .navbar-brand img {
+    height: 48px;
+  }
+
   .navbar-toggler {
     display: block;
+    z-index: 2;
+    padding: 0.35rem 0.5rem;
   }
 
   .navbar-collapse {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
     width: 100%;
-    background: var(--gradient-nav);
-    padding: 1rem;
+    margin: 0;
+    background: var(--navbar-bg);
+    padding: 0.5rem 1rem 1rem;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    max-height: min(70vh, 420px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .navbar-collapse.show {
@@ -844,7 +952,36 @@ button.bpw-widget-btn.bpw-floating-button {
 
   .navbar-nav {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    width: 100%;
+    gap: 0;
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 0.85rem 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1rem;
+  }
+
+  .nav-item:last-child .nav-link {
+    border-bottom: none;
+  }
+
+  body.nav-menu-open {
+    overflow: hidden;
+  }
+
+  html {
+    scroll-padding-top: 72px;
+  }
+
+  .hero-contents-wrap {
+    padding-top: 100px;
   }
 
   .btn-singin {
@@ -855,6 +992,43 @@ button.bpw-widget-btn.bpw-floating-button {
   .head-title {
     font-size: 1.8rem;
   }
+
+  .featured-bg {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .featured-bg [class*='col-'] {
+    width: 100%;
+    padding: 0;
+  }
+
+  .feature-item {
+    min-height: auto;
+    padding: 1.25rem 1rem;
+    border-left: none !important;
+    border-right: none !important;
+  }
+
+  .featured-border1,
+  .featured-border2 {
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .featured-bg [class*='col-']:last-child .feature-item {
+    border-bottom: none;
+  }
+
+  .features-quote {
+    padding: 0 4% 2rem;
+    font-size: 1rem;
+  }
+
+  #features .section-header {
+    margin-bottom: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -862,10 +1036,21 @@ button.bpw-widget-btn.bpw-floating-button {
     width: 100%;
   }
 
-  .feature-item {
-    min-height: auto;
+  .section {
+    padding: 56px 0;
   }
 
+  .feature-item {
+    gap: 0.85rem;
+  }
+
+  .feature-icon {
+    font-size: 1.65rem;
+  }
+
+  .feature-item h4 {
+    font-size: 1.05rem;
+  }
 }
 
 /* Booking Calendar Component Styles */
@@ -885,6 +1070,13 @@ button.bpw-widget-btn.bpw-floating-button {
   color: #666;
   font-size: 0.95rem;
   margin-top: -1rem;
+  margin-bottom: 0.75rem;
+}
+
+.booking-intro {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
   margin-bottom: 2rem;
 }
 
@@ -896,10 +1088,22 @@ button.bpw-widget-btn.bpw-floating-button {
   border-bottom: 1px solid #f0f0f0;
 }
 
-.booking-profile-avatar img {
+.booking-profile-avatar {
+  display: inline-flex;
   width: 140px;
-  height: auto;
-  object-fit: contain;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #076fab;
+  box-shadow: 0 4px 14px rgba(7, 111, 171, 0.2);
+}
+
+.booking-profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
 }
 
 .booking-profile-name {

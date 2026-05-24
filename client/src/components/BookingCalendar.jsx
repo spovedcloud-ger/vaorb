@@ -1,9 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import avatarImg from '../assets/carlv2.png';
+import avatarImg from '../assets/TheVAavatar.jpg';
 
-const API_BASE =
-  import.meta.env.VITE_API_URL ||
-  (import.meta.env.DEV ? '/api' : 'http://localhost:5000/api');
+const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 const MONTHS = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -210,7 +208,7 @@ export default function BookingCalendar({ onBookingClick }) {
         </div>
         <h3 className="booking-profile-name">Carl Falle</h3>
         <div className="booking-profile-details">
-          <span>Executive Virtual Assistant | Admin & Operations Support | Medical Executive Assistant | Helping Entrepreneurs Scale Efficiently</span>
+          <span>Founder &amp; Operations Partner</span>
         </div>
       </div>
 

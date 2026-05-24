@@ -19,7 +19,7 @@ export default function Footer({ onOpenAdmin }) {
         </section>
       </footer>
 
-      <footer>
+      {/* <footer>
         <section id="footer-Content" className="footer-affiliate" style={{ backgroundColor: '#2D2D2D' }}>
           <div className="copyright">
             <div className="container">
@@ -32,7 +32,7 @@ export default function Footer({ onOpenAdmin }) {
             </div>
           </div>
         </section>
-      </footer>
+      </footer> */}
 
       <footer>
         <section id="footer-Content">
@@ -49,10 +49,9 @@ export default function Footer({ onOpenAdmin }) {
                       <a href="#pricing" className="page-scroll">
                         Support
                       </a>
-                      &nbsp;&nbsp;&nbsp;
-                      <a href="#packages" className="page-scroll">
+                      {/* <a href="#packages" className="page-scroll">
                         Websites
-                      </a>
+                      </a> */}
                       &nbsp;&nbsp;&nbsp;
                       <a href="#contact" className="page-scroll">
                         Contact
@@ -61,10 +60,9 @@ export default function Footer({ onOpenAdmin }) {
                       <a href={EXTERNAL_LINKS.tools} target="_blank" rel="noreferrer">
                         Tools
                       </a>
-                      &nbsp;&nbsp;&nbsp;
-                      <button type="button" className="footer-link-btn" onClick={onOpenAdmin}>
+                      {/* <button type="button" className="footer-link-btn" onClick={onOpenAdmin}>
                         Earn
-                      </button>
+                      </button> */}
                       &nbsp;&nbsp;|&nbsp;&nbsp;© 2015-2026&nbsp;&nbsp;
                       <a href="https://www.carlfalle.com" rel="nofollow">
                         Carl Falle

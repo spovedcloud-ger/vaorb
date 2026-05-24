@@ -213,9 +213,12 @@ export default function Contact({ onSubmit, onBookingClick }) {
         <div className="container booking-wrap">
           <hr className="section-divider" />
           <div id="book" className="contact-text section-header text-center">
-            <h3 className="section-title">Book A FREE Discovery / Consult Call</h3>
+            <h3 className="section-title">Book a Free Discovery Call</h3>
             <p className="booking-subtitle">
-              Flash Site, AI | coaching &amp; qualification call · Via Google Meet
+              15-Min Executive Support Strategy · Via Google Meet
+            </p>
+            <p className="booking-intro desc-text">
+              Let&apos;s talk about where you&apos;re currently drowning in backend tasks and how an elite operations partner can take over the heavy lifting so you can focus entirely on your vision.
             </p>
           </div>
           <BookingCalendar onBookingClick={onBookingClick} />

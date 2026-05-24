@@ -1,9 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { DEFAULT_PRICING } from '../data/siteContent';
 
-const API_BASE =
-  import.meta.env.VITE_API_URL ||
-  (import.meta.env.DEV ? '/api' : 'http://localhost:5000/api');
+const API_BASE = import.meta.env.VITE_API_URL || '/api';
 
 export function useSiteApi() {
   const [pricing, setPricing] = useState(DEFAULT_PRICING);

@@ -1,5 +1,10 @@
 const { validationResult } = require('express-validator');
 const { dbRepo } = require('../config/db');
+const {
+  isEmailConfigured,
+  sendInquiryNotification,
+  sendInquiryConfirmation,
+} = require('../services/emailService');
 
 exports.submitInquiry = async (req, res) => {
   // Validate request
@@ -19,9 +24,27 @@ exports.submitInquiry = async (req, res) => {
       message
     });
 
+    let emailSent = false;
+    if (isEmailConfigured()) {
+      try {
+        await sendInquiryNotification(inquiry);
+        await sendInquiryConfirmation(inquiry);
+        emailSent = true;
+      } catch (mailErr) {
+        console.error('Contact form email error:', mailErr.message);
+      }
+    } else {
+      console.warn(
+        'Contact inquiry saved but email not sent — add SMTP_HOST, SMTP_USER, SMTP_PASS to server/.env'
+      );
+    }
+
     res.status(201).json({
       success: true,
-      message: 'Your request has been sent! We will get back to you shortly.',
+      message: emailSent
+        ? 'Your message was sent! Check your inbox for a confirmation — we will reply shortly.'
+        : 'Your message was received! We will get back to you shortly.',
+      emailSent,
       data: inquiry
     });
   } catch (error) {
