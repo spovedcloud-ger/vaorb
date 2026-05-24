@@ -166,7 +166,12 @@ export default function BookingCalendar({ onBookingClick }) {
       });
       const data = await res.json();
       if (res.ok) {
-        setSubmitResult({ type: 'success', message: data.message });
+        setSubmitResult({
+          type: 'success',
+          message: data.message,
+          meetLink: data.meetLink || data.booking?.meetLink || null,
+          emailSent: data.emailSent,
+        });
         setStep('success');
       } else {
         setSubmitResult({ type: 'error', message: data.errors?.[0]?.msg || data.message || 'Booking failed.' });
@@ -430,6 +435,22 @@ export default function BookingCalendar({ onBookingClick }) {
               <div className="booking-success-icon">✅</div>
               <h3>Booking Confirmed!</h3>
               <p>{submitResult?.message}</p>
+              {submitResult?.meetLink && (
+                <a
+                  href={submitResult.meetLink}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="booking-meet-link"
+                >
+                  Join Google Meet
+                </a>
+              )}
+              {submitResult?.emailSent && (
+                <p className="booking-email-hint">
+                  A confirmation with the Meet link was sent to your email and{' '}
+                  accounts@thevaorbit.com.
+                </p>
+              )}
               <div className="booking-summary-card">
                 <div className="booking-summary-item">
                   <span className="booking-summary-icon">📅</span>

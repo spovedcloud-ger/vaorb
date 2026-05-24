@@ -33,10 +33,14 @@ const BookingSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
+  meetLink: {
+    type: String,
+    trim: true
+  },
   status: {
     type: String,
     enum: ['pending', 'confirmed', 'cancelled'],
-    default: 'pending'
+    default: 'confirmed'
   },
   createdAt: {
     type: Date,

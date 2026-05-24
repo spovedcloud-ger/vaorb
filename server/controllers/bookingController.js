@@ -1,5 +1,7 @@
 const { validationResult } = require('express-validator');
 const { dbRepo } = require('../config/db');
+const { getMeetLinkForBooking } = require('../utils/meetLink');
+const { isEmailConfigured, sendBookingEmails } = require('../services/emailService');
 
 // @route   POST /api/bookings
 // @desc    Create a new booking
@@ -12,6 +14,8 @@ exports.createBooking = async (req, res) => {
 
   try {
     const { name, email, date, time, timezone, callType, notes } = req.body;
+    const meetLink = getMeetLinkForBooking();
+
     const booking = await dbRepo.saveBooking({
       name,
       email,
@@ -19,9 +23,38 @@ exports.createBooking = async (req, res) => {
       time,
       timezone: timezone || 'UTC',
       callType: callType || 'discovery',
-      notes: notes || ''
+      notes: notes || '',
+      meetLink: meetLink || '',
+      status: 'confirmed',
     });
-    res.status(201).json({ message: 'Booking confirmed! We will send a Google Meet link to your email.', booking });
+
+    let emailSent = false;
+    if (isEmailConfigured()) {
+      try {
+        await sendBookingEmails(booking);
+        emailSent = true;
+      } catch (mailErr) {
+        console.error('Booking email error:', mailErr.message);
+      }
+    } else {
+      console.warn(
+        'Booking saved but emails not sent — configure SMTP and GOOGLE_MEET_LINK in server/.env'
+      );
+    }
+
+    const meetMsg = meetLink
+      ? ' Google Meet link sent to you and accounts@thevaorbit.com.'
+      : ' Add GOOGLE_MEET_LINK in server/.env to include Meet links in emails.';
+
+    res.status(201).json({
+      success: true,
+      message: emailSent
+        ? `Booking confirmed!${meetMsg}`
+        : `Booking confirmed!${meetLink ? meetMsg : ' Email is not configured yet.'}`,
+      emailSent,
+      meetLink: meetLink || null,
+      booking,
+    });
   } catch (err) {
     console.error('Booking creation error:', err);
     res.status(500).json({ message: 'Failed to create booking. Please try again.' });

@@ -1539,6 +1539,31 @@ button.bpw-widget-btn.bpw-floating-button {
   font-size: 0.9rem;
 }
 
+.booking-meet-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 12px 24px;
+  background: #076fab;
+  color: #fff !important;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.booking-meet-link:hover {
+  background: #07608f;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.booking-email-hint {
+  font-size: 0.85rem;
+  color: #076fab;
+  margin: -0.5rem 0 1.25rem;
+  line-height: 1.5;
+}
+
 .booking-alert {
   padding: 0.75rem;
   border-radius: 4px;

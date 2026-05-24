@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const { formatBookingSummary } = require('../utils/bookingFormat');
 
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'accounts@thevaorbit.com';
 const SITE_NAME = process.env.SITE_NAME || 'The VA Orbit';
@@ -147,8 +148,129 @@ async function sendInquiryConfirmation(inquiry) {
   });
 }
 
+function meetLinkBlock(meetLink) {
+  if (!meetLink) {
+    return {
+      text: 'Google Meet link: (not configured — add GOOGLE_MEET_LINK to server/.env)',
+      html: `<p style="font-family:sans-serif;color:#b45309;">Google Meet link is not configured on the server yet.</p>`,
+    };
+  }
+  return {
+    text: `Google Meet: ${meetLink}`,
+    html: `
+      <p style="font-family:sans-serif;font-size:15px;margin:16px 0 8px;">
+        <strong>Join Google Meet:</strong><br/>
+        <a href="${escapeHtml(meetLink)}" style="color:#076fab;font-size:16px;">${escapeHtml(meetLink)}</a>
+      </p>
+    `,
+  };
+}
+
+/**
+ * Notify accounts@thevaorbit.com of a new booking with Meet link.
+ */
+async function sendBookingNotificationToAdmin(booking) {
+  const { name, email, notes, meetLink } = booking;
+  const { dateLabel, timeLabel, callLabel, tz } = formatBookingSummary(booking);
+  const meet = meetLinkBlock(meetLink);
+  const subject = `[${SITE_NAME}] New booking — ${name} · ${dateLabel}`;
+
+  const text = [
+    `New discovery call booking`,
+    ``,
+    `Name: ${name}`,
+    `Email: ${email}`,
+    `Date: ${dateLabel}`,
+    `Time: ${timeLabel} (${tz})`,
+    `Session: ${callLabel}`,
+    meet.text,
+    notes ? `\nNotes:\n${notes}` : '',
+  ]
+    .filter(Boolean)
+    .join('\n');
+
+  const html = `
+    <h2 style="margin:0 0 12px;font-family:sans-serif;color:#076fab;">New booking confirmed</h2>
+    <table style="font-family:sans-serif;font-size:14px;color:#333;border-collapse:collapse;">
+      <tr><td style="padding:6px 12px 6px 0;font-weight:600;">Guest</td><td>${escapeHtml(name)}</td></tr>
+      <tr><td style="padding:6px 12px 6px 0;font-weight:600;">Email</td><td><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
+      <tr><td style="padding:6px 12px 6px 0;font-weight:600;">When</td><td>${escapeHtml(dateLabel)} at ${escapeHtml(timeLabel)}</td></tr>
+      <tr><td style="padding:6px 12px 6px 0;font-weight:600;">Timezone</td><td>${escapeHtml(tz)}</td></tr>
+      <tr><td style="padding:6px 12px 6px 0;font-weight:600;">Session</td><td>${escapeHtml(callLabel)}</td></tr>
+    </table>
+    ${meet.html}
+    ${notes ? `<p style="font-family:sans-serif;font-size:14px;color:#333;white-space:pre-wrap;"><strong>Notes:</strong><br/>${escapeHtml(notes)}</p>` : ''}
+  `;
+
+  return sendMail({
+    to: CONTACT_EMAIL,
+    replyTo: email,
+    subject,
+    text,
+    html,
+  });
+}
+
+/**
+ * Confirmation + Google Meet link to the guest who booked.
+ */
+async function sendBookingConfirmationToGuest(booking) {
+  const { name, email, meetLink } = booking;
+  const { dateLabel, timeLabel, callLabel, tz } = formatBookingSummary(booking);
+  const meet = meetLinkBlock(meetLink);
+  const firstName = name.trim().split(/\s+/)[0] || 'there';
+  const subject = `Your ${SITE_NAME} call is confirmed — Google Meet inside`;
+
+  const text = [
+    `Hi ${firstName},`,
+    ``,
+    `Your call is confirmed.`,
+    ``,
+    `Date: ${dateLabel}`,
+    `Time: ${timeLabel} (${tz})`,
+    `Session: ${callLabel}`,
+    meet.text,
+    ``,
+    `Join at the scheduled time using the link above.`,
+    ``,
+    `Questions? Reply to this email or contact ${CONTACT_EMAIL}.`,
+    ``,
+    `— ${SITE_NAME}`,
+  ].join('\n');
+
+  const html = `
+    <p style="font-family:sans-serif;font-size:15px;color:#333;">Hi ${escapeHtml(firstName)},</p>
+    <p style="font-family:sans-serif;font-size:15px;color:#333;line-height:1.6;">
+      Your <strong>${escapeHtml(callLabel)}</strong> is confirmed.
+    </p>
+    <table style="font-family:sans-serif;font-size:14px;color:#333;border-collapse:collapse;margin:12px 0;">
+      <tr><td style="padding:6px 12px 6px 0;font-weight:600;">Date</td><td>${escapeHtml(dateLabel)}</td></tr>
+      <tr><td style="padding:6px 12px 6px 0;font-weight:600;">Time</td><td>${escapeHtml(timeLabel)} (${escapeHtml(tz)})</td></tr>
+    </table>
+    ${meet.html}
+    <p style="font-family:sans-serif;font-size:14px;color:#555;">Join at the scheduled time using the Meet link above.</p>
+    <p style="font-family:sans-serif;font-size:15px;color:#076fab;margin-top:24px;">— ${escapeHtml(SITE_NAME)}</p>
+  `;
+
+  return sendMail({
+    to: email,
+    subject,
+    text,
+    html,
+  });
+}
+
+async function sendBookingEmails(booking) {
+  await sendBookingNotificationToAdmin(booking);
+  await sendBookingConfirmationToGuest(booking);
+  return { sent: true };
+}
+
 module.exports = {
   isEmailConfigured,
   sendInquiryNotification,
   sendInquiryConfirmation,
+  sendBookingNotificationToAdmin,
+  sendBookingConfirmationToGuest,
+  sendBookingEmails,
 };
