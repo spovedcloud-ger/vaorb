@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 const { dbRepo } = require('../config/db');
-const { getMeetLinkForBooking } = require('../utils/meetLink');
+const { resolveMeetLinkForBooking } = require('../utils/meetLink');
 const { isEmailConfigured, sendBookingEmails } = require('../services/emailService');
 
 // @route   POST /api/bookings
@@ -14,9 +14,7 @@ exports.createBooking = async (req, res) => {
 
   try {
     const { name, email, date, time, timezone, callType, notes } = req.body;
-    const meetLink = getMeetLinkForBooking();
-
-    const booking = await dbRepo.saveBooking({
+    const bookingInput = {
       name,
       email,
       date,
@@ -24,7 +22,15 @@ exports.createBooking = async (req, res) => {
       timezone: timezone || 'UTC',
       callType: callType || 'discovery',
       notes: notes || '',
+    };
+
+    const { meetLink, meetSource, calendarEventId } = await resolveMeetLinkForBooking(bookingInput);
+
+    const booking = await dbRepo.saveBooking({
+      ...bookingInput,
       meetLink: meetLink || '',
+      meetSource: meetSource || 'none',
+      calendarEventId: calendarEventId || '',
       status: 'confirmed',
     });
 
@@ -43,8 +49,12 @@ exports.createBooking = async (req, res) => {
     }
 
     const meetMsg = meetLink
-      ? ' Google Meet link sent to you and accounts@thevaorbit.com.'
-      : ' Add GOOGLE_MEET_LINK in server/.env to include Meet links in emails.';
+      ? meetSource === 'google-calendar'
+        ? ' A unique Google Meet link was created and emailed to you and accounts@thevaorbit.com.'
+        : (meetSource === 'mock-unique' || meetSource === 'static-unique')
+        ? ' A unique Google Meet link was generated and emailed to you and accounts@thevaorbit.com.'
+        : ' Google Meet link sent to you and accounts@thevaorbit.com.'
+      : ' Configure Google Calendar API or GOOGLE_MEET_LINK for Meet links in emails.';
 
     res.status(201).json({
       success: true,
@@ -53,11 +63,12 @@ exports.createBooking = async (req, res) => {
         : `Booking confirmed!${meetLink ? meetMsg : ' Email is not configured yet.'}`,
       emailSent,
       meetLink: meetLink || null,
+      meetSource: meetSource || 'none',
       booking,
     });
   } catch (err) {
     console.error('Booking creation error:', err);
-    res.status(500).json({ message: 'Failed to create booking. Please try again.' });
+    res.status(500).json({ message: 'Failed to create booking. Please try again.', error: err.message, stack: err.stack });
   }
 };
 

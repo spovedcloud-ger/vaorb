@@ -170,6 +170,7 @@ export default function BookingCalendar({ onBookingClick }) {
           type: 'success',
           message: data.message,
           meetLink: data.meetLink || data.booking?.meetLink || null,
+          meetSource: data.meetSource || data.booking?.meetSource || null,
           emailSent: data.emailSent,
         });
         setStep('success');
@@ -205,34 +206,35 @@ export default function BookingCalendar({ onBookingClick }) {
   };
 
   return (
-    <div className="booking-calendar">
-      {/* Profile Header */}
-      <div className="booking-profile">
-        <div className="booking-profile-avatar">
-          <img src={avatarImg} alt="Carl" />
+    <div className="booking-calendar calendly-style">
+      {/* Left Sidebar */}
+      <div className="booking-sidebar">
+        <div className="booking-profile">
+          <div className="booking-profile-avatar">
+            <img src={avatarImg} alt="Carl" />
+          </div>
+          <h3 className="booking-profile-name">Carl Falle</h3>
+          <div className="booking-profile-details">
+            <span>Founder &amp; Operations Partner</span>
+          </div>
         </div>
-        <h3 className="booking-profile-name">Carl Falle</h3>
-        <div className="booking-profile-details">
-          <span>Founder &amp; Operations Partner</span>
+
+        {/* Meeting Info */}
+        <div className="booking-meeting-info">
+          <div className="meeting-info-item">
+            <span className="meeting-icon">⏱️</span>
+            <span>{selectedCallInfo?.duration || '15 min'}</span>
+          </div>
+          <div className="meeting-info-item">
+            <span className="meeting-icon">📹</span>
+            <span>Google Meet</span>
+          </div>
+          <div className="meeting-info-item">
+            <span className="meeting-icon">📅</span>
+            <span>{selectedCallInfo?.label || 'Discovery Call'}</span>
+          </div>
         </div>
       </div>
-
-      {/* Call Type Selector (Hidden) */}
-      {false && (
-        <div className="booking-call-types">
-          {CALL_TYPES.map(ct => (
-            <button
-              key={ct.value}
-              className={`booking-call-type-btn ${selectedCallType === ct.value ? 'active' : ''}`}
-              onClick={() => setSelectedCallType(ct.value)}
-            >
-              <span className="booking-call-icon">{ct.icon}</span>
-              <span className="booking-call-label">{ct.label}</span>
-              <span className="booking-call-duration">{ct.duration}</span>
-            </button>
-          ))}
-        </div>
-      )}
 
       <div className="booking-layout">
         {/* Calendar Side */}
@@ -447,8 +449,11 @@ export default function BookingCalendar({ onBookingClick }) {
               )}
               {submitResult?.emailSent && (
                 <p className="booking-email-hint">
-                  A confirmation with the Meet link was sent to your email and{' '}
-                  accounts@thevaorbit.com.
+                  {submitResult.meetSource === 'google-calendar'
+                    ? 'A unique Google Meet link was created and emailed to you and accounts@thevaorbit.com.'
+                    : (submitResult.meetSource === 'mock-unique' || submitResult.meetSource === 'static-unique')
+                    ? 'A unique Google Meet link was generated and emailed to you and accounts@thevaorbit.com.'
+                    : 'A confirmation with the Meet link was sent to your email and accounts@thevaorbit.com.'}
                 </p>
               )}
               <div className="booking-summary-card">

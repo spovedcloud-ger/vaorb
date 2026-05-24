@@ -9,6 +9,7 @@ const pricingController = require('../controllers/pricingController');
 const analyticsController = require('../controllers/analyticsController');
 const chatController = require('../controllers/chatController');
 const bookingController = require('../controllers/bookingController');
+const oauthGoogleController = require('../controllers/oauthGoogleController');
 
 // Import middleware
 const auth = require('../middleware/auth');
@@ -40,6 +41,10 @@ router.post('/analytics/click-booking', analyticsController.trackBookingClick);
 // AI chat (OpenAI-compatible: OpenAI, Groq, OpenRouter, etc.)
 router.get('/chat/status', chatController.getChatStatus);
 router.post('/chat', chatController.chat);
+
+// One-time Google Calendar OAuth (add refresh token to Vercel after success)
+router.get('/oauth/google/start', oauthGoogleController.start);
+router.get('/oauth/google/callback', oauthGoogleController.callback);
 
 // Booking / Consultation Call Scheduling
 router.get('/bookings/slots', bookingController.getAvailableSlots);

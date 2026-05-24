@@ -37,6 +37,15 @@ const BookingSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
+  calendarEventId: {
+    type: String,
+    trim: true
+  },
+  meetSource: {
+    type: String,
+    enum: ['google-calendar', 'static', 'none', 'mock-unique', 'static-unique'],
+    default: 'none'
+  },
   status: {
     type: String,
     enum: ['pending', 'confirmed', 'cancelled'],

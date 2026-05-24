@@ -5,11 +5,14 @@
   "main": "server/index.js",
   "scripts": {
     "install-all": "npm install && npm install --prefix server && npm install --prefix client",
-    "server": "npm start --prefix server",
+    "server": "npm run dev --prefix server",
     "client": "npm run dev --prefix client",
     "kill-ports": "powershell -NoProfile -Command \"$ports=5000,5173; Get-NetTCPConnection -State Listen -ErrorAction SilentlyContinue | Where-Object { $ports -contains $_.LocalPort } | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }\"",
     "dev": "npm run kill-ports && concurrently \"npm run server\" \"npm run client\"",
-    "build": "npm run build --prefix client"
+    "build": "npm run build --prefix client",
+    "google-calendar-auth": "npm run google-calendar-auth --prefix server",
+    "import-google-oauth-json": "npm run import-google-oauth-json --prefix server",
+    "test-meet-booking": "npm run test-meet-booking --prefix server"
   },
   "keywords": [
     "mern",

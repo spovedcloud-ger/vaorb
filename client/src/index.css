@@ -1055,10 +1055,10 @@ button.bpw-widget-btn.bpw-floating-button {
 
 /* Booking Calendar Component Styles */
 .booking-calendar {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
   background: #fff;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
   border: 1px solid #eaeaea;
   overflow: hidden;
@@ -1066,36 +1066,39 @@ button.bpw-widget-btn.bpw-floating-button {
   color: #333;
 }
 
-.booking-subtitle {
-  color: #666;
-  font-size: 0.95rem;
-  margin-top: -1rem;
-  margin-bottom: 0.75rem;
+.booking-calendar.calendly-style {
+  display: flex;
+  flex-direction: row;
+  min-height: 500px;
 }
 
-.booking-intro {
-  color: #555;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
+.booking-sidebar {
+  flex: 0 0 30%;
+  border-right: 1px solid #f0f0f0;
+  padding: 2rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Profile Header */
 .booking-profile {
-  text-align: center;
-  padding: 2rem 2rem 1.5rem;
-  background: #fdfdfd;
-  border-bottom: 1px solid #f0f0f0;
+  text-align: left;
+  padding: 0;
+  background: transparent;
+  border-bottom: none;
+  margin-bottom: 1.5rem;
 }
 
 .booking-profile-avatar {
   display: inline-flex;
-  width: 140px;
-  height: 140px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid #076fab;
-  box-shadow: 0 4px 14px rgba(7, 111, 171, 0.2);
+  border: 2px solid #076fab;
+  box-shadow: 0 2px 8px rgba(7, 111, 171, 0.15);
+  margin-bottom: 1rem;
 }
 
 .booking-profile-avatar img {
@@ -1107,75 +1110,46 @@ button.bpw-widget-btn.bpw-floating-button {
 }
 
 .booking-profile-name {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  margin: 0.75rem 0 0.5rem;
+  margin: 0 0 0.25rem;
   color: #222;
 }
 
 .booking-profile-details {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
   font-size: 0.85rem;
-  color: #555;
+  color: #666;
+  font-weight: 500;
 }
 
-/* Call Types */
-.booking-call-types {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1.5rem 2rem;
-  background: #fafafa;
-  border-bottom: 1px solid #f0f0f0;
-  flex-wrap: wrap;
-}
-
-.booking-call-type-btn {
+/* Meeting Info */
+.booking-meeting-info {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.meeting-info-item {
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  min-width: 140px;
-}
-
-.booking-call-type-btn:hover {
-  border-color: var(--brand-green);
-  transform: translateY(-2px);
-}
-
-.booking-call-type-btn.active {
-  border-color: var(--brand-green);
-  background: rgba(7, 111, 171, 0.05); /* very light brand color */
-  box-shadow: 0 0 0 1px var(--brand-green);
-}
-
-.booking-call-icon {
-  font-size: 1.5rem;
-}
-
-.booking-call-label {
-  font-size: 0.85rem;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  color: #555;
   font-weight: 500;
-  text-align: center;
 }
 
-.booking-call-duration {
-  font-size: 0.75rem;
-  color: #777;
+.meeting-icon {
+  font-size: 1.1rem;
 }
 
 /* Layout */
 .booking-layout {
+  flex: 1;
   display: flex;
-  min-height: 400px;
+  flex-direction: row;
 }
 
 .booking-calendar-panel {
@@ -1187,7 +1161,7 @@ button.bpw-widget-btn.bpw-floating-button {
 .booking-details-panel {
   flex: 1;
   padding: 2rem;
-  background: #fdfdfd;
+  background: #fff;
 }
 
 @media (max-width: 768px) {
