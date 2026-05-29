@@ -25,11 +25,19 @@ function getCallTypeLabel(callType) {
   return CALL_TYPE_LABELS[callType] || callType || 'Discovery Call';
 }
 
+function formatTzLabel(tz) {
+  // Always display PST for the Pacific timezone
+  if (!tz || tz === 'America/Los_Angeles' || tz === 'Pacific Standard Time') {
+    return 'PST';
+  }
+  return tz;
+}
+
 function formatBookingSummary(booking) {
   const dateLabel = formatBookingDate(booking.date);
   const timeLabel = formatTime12h(booking.time);
   const callLabel = getCallTypeLabel(booking.callType);
-  const tz = booking.timezone || 'UTC';
+  const tz = formatTzLabel(booking.timezone);
   return { dateLabel, timeLabel, callLabel, tz };
 }
 
@@ -37,5 +45,6 @@ module.exports = {
   formatBookingDate,
   formatTime12h,
   getCallTypeLabel,
+  formatTzLabel,
   formatBookingSummary,
 };

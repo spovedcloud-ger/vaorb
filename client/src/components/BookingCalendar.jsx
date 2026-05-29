@@ -42,7 +42,7 @@ export default function BookingCalendar({ onBookingClick }) {
   const [formErrors, setFormErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [submitResult, setSubmitResult] = useState(null);
-  const [userTimezone] = useState(Intl.DateTimeFormat().resolvedOptions().timeZone);
+  const userTimezone = 'America/Los_Angeles'; // Locked to PST
 
   // Build calendar grid
   const calendarDays = useMemo(() => {
@@ -305,7 +305,7 @@ export default function BookingCalendar({ onBookingClick }) {
           <div className="booking-timezone-bar">
             <div className="booking-timezone">
               <span className="booking-tz-icon">🌐</span>
-              <span>{userTimezone}</span>
+              <span>Pacific Standard Time (PST)</span>
             </div>
             <div className="booking-format-toggle">
               <span className={!use24h ? 'active' : ''}>am/pm</span>
