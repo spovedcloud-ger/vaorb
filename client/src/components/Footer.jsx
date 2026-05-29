@@ -42,7 +42,17 @@ export default function Footer({ onOpenAdmin }) {
                 <div className="col-md-12">
                   <div className="site-info text-center">
                     <p>
-                      <a href={EXTERNAL_LINKS.about} target="_blank" rel="noreferrer">
+                      <a
+                        href="/about"
+                        target={window.location.pathname === '/about' ? '_self' : '_blank'}
+                        rel={window.location.pathname === '/about' ? '' : 'noreferrer'}
+                        onClick={(e) => {
+                          if (window.location.pathname === '/about') {
+                            e.preventDefault();
+                            window.location.reload();
+                          }
+                        }}
+                      >
                         About
                       </a>
                       &nbsp;&nbsp;&nbsp;

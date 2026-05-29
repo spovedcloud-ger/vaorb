@@ -17,8 +17,12 @@ import { useSiteApi } from './hooks/useSiteApi';
 import { useAdmin } from './hooks/useAdmin';
 import { EXTERNAL_LINKS } from './data/siteContent';
 
+import AboutPage from './pages/AboutPage';
+import NotFoundPage from './pages/NotFoundPage';
+
 function App() {
   const [navbarScrolled, setNavbarScrolled] = useState(false);
+
   const {
     apiBase,
     pricing,
@@ -63,9 +67,20 @@ function App() {
     };
   }, []);
 
+  const path = window.location.pathname;
+
+  if (path === '/about') {
+    return <AboutPage />;
+  }
+
+  if (path !== '/' && !path.startsWith('/#')) {
+    return <NotFoundPage />;
+  }
+
   return (
     <>
       <Header scrolled={navbarScrolled} />
+
 
       <ServicesSection />
       <BusinessPlanSection />
