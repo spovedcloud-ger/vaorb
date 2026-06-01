@@ -40,29 +40,55 @@ function App() {
     const onScroll = () => setNavbarScrolled(window.scrollY > 50);
     window.addEventListener('scroll', onScroll);
 
+    // Scroll to hash section on page load (e.g. /#contact from another page)
+    const scrollToHash = () => {
+      const hash = window.location.hash;
+      if (hash?.startsWith('#')) {
+        const tryScroll = (retries = 5) => {
+          let target = document.querySelector(hash);
+          if (hash === '#contact') {
+            target = document.querySelector('#contact-form') || target;
+          }
+          if (target) {
+            const header = document.querySelector('.navbar.fixed-top') || document.querySelector('.navbar');
+            const headerOffset = header?.offsetHeight ?? 70;
+            const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({ top: Math.max(0, targetTop - headerOffset - 20), behavior: 'smooth' });
+          } else if (retries > 0) {
+            setTimeout(() => tryScroll(retries - 1), 100);
+          }
+        };
+        tryScroll();
+      }
+    };
+    scrollToHash();
+    window.addEventListener('hashchange', scrollToHash);
+
     const onAnchorClick = (e) => {
       const link = e.target.closest('a.page-scroll');
       if (!link) return;
       const href = link.getAttribute('href');
+      // Cross-page hash link (e.g. /#contact) — let browser navigate, scrollToHash handles it
+      if (href?.startsWith('/#')) return;
+      // Same-page hash link (e.g. #contact) — smooth scroll
       if (!href?.startsWith('#')) return;
-      const target = document.querySelector(href);
+      e.preventDefault();
+      let target = document.querySelector(href);
+      if (href === '#contact') {
+        target = document.querySelector('#contact-form') || target;
+      }
       if (target) {
-        e.preventDefault();
-
-        // Account for fixed header (Header uses fixed-top navbar)
         const header = document.querySelector('.navbar.fixed-top') || document.querySelector('.navbar');
         const headerOffset = header?.offsetHeight ?? 70;
-
         const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
-        const scrollToY = Math.max(0, targetTop - headerOffset);
-
-        window.scrollTo({ top: scrollToY, behavior: 'smooth' });
+        window.scrollTo({ top: Math.max(0, targetTop - headerOffset - 20), behavior: 'smooth' });
       }
     };
     document.addEventListener('click', onAnchorClick);
 
     return () => {
       window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('hashchange', scrollToHash);
       document.removeEventListener('click', onAnchorClick);
     };
   }, []);
