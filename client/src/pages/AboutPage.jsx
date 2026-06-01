@@ -81,41 +81,17 @@ function ReviewSlider({ reviews }) {
         {/* Header Controls */}
         <div className="gw-rv-main-slider-widget__header">
           <div className="gw-rv-main-slider-widget__title">
-            <p className="gw-title-main">Our customers love us</p>
+            <p className="gw-title-main">Client Review</p>
             <p className="gw-title-sub">from 271 reviews</p>
-          </div>
-          
-          <div className="gw-rv-slider-controls">
-            <button
-              type="button"
-              className="gw-slider-arrow gw-slider-arrow--prev"
-              onClick={prev}
-              disabled={currentIndex === 0}
-              aria-label="Previous reviews"
-            >
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="15 18 9 12 15 6" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              className="gw-slider-arrow gw-slider-arrow--next"
-              onClick={next}
-              disabled={currentIndex >= maxIndex}
-              aria-label="Next reviews"
-            >
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-            </button>
           </div>
         </div>
 
-        {/* Carousel Slider Track */}
-        <div className="gw-rv-main-slider">
-          <div className="gw-slider-container">
-            <div
-              className="gw-slider-track"
+        {/* Carousel Slider Track with side controls */}
+        <div className="gw-rv-slider-wrapper">
+          <div className="gw-rv-main-slider">
+            <div className="gw-slider-container">
+              <div
+                className="gw-slider-track"
               style={{
                 transform: `translate3d(-${currentIndex * (100 / visibleCards)}%, 0px, 0px)`,
               }}
@@ -178,6 +154,32 @@ function ReviewSlider({ reviews }) {
           </div>
         </div>
 
+            <div className="gw-rv-slider-controls">
+              <button
+                type="button"
+                className="gw-slider-arrow gw-slider-arrow--prev"
+                onClick={prev}
+                disabled={currentIndex === 0}
+                aria-label="Previous reviews"
+              >
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                className="gw-slider-arrow gw-slider-arrow--next"
+                onClick={next}
+                disabled={currentIndex >= maxIndex}
+                aria-label="Next reviews"
+              >
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
         {/* Dots Indicator */}
         {pageCount > 1 && (
           <div className="gw-rv-slider-dots">
@@ -201,7 +203,7 @@ export default function AboutPage() {
   const [navbarScrolled, setNavbarScrolled] = useState(false);
 
   useEffect(() => {
-    document.title = "About Us - Customer Reviews | The VA Orbit";
+    document.title = "About Us - Client Reviews | The VA Orbit";
     window.scrollTo(0, 0);
 
     const onScroll = () => setNavbarScrolled(window.scrollY > 50);
@@ -213,75 +215,83 @@ export default function AboutPage() {
     () => [
       {
         id: 'r1',
-        author: 'Joyce Lourdes T.',
+        author: 'Tennille Cilia',
         rating: 5,
-        image: 'https://cdn.shopify.com/s/files/1/0592/2648/8885/products/ark-walking-pad-classic-957913.jpg?v=1693121150&width=512',
-        alt: 'Ark Walking Pad Classic - Ark Ergonomics',
-        text: 'We love the walking pad! An absolute game changer for wfh life! For something so portable, it feels remarkably stable underfoot. The remote control is responsive, making it easy to adjust speeds on the fly.',
+        image: '/assets/Tennille Cilia.jpg',
+        alt: 'Tennille Cilia',
+        text: 'The VA Orbit completely transformed our business operations. Their team handled our admin tasks flawlessly, giving us back 20+ hours a week. Highly professional and detail-oriented!',
       },
       {
         id: 'r2',
-        author: 'Kathleen D.',
+        author: 'Tarek El-Din',
         rating: 5,
-        image: 'https://cdn.shopify.com/s/files/1/0592/2648/8885/products/ark-desk-classic-premium-single-motor-standing-desk-887302.jpg?v=1693121167&width=512',
-        alt: 'ark desk classic single motor standing desk',
-        text: 'Looks very slick and durable!',
+        image: '/assets/Tarek El-Din.jpg',
+        alt: 'Tarek El-Din',
+        text: 'Our new website built by The VA Orbit is sleek, fast, and exactly what we needed. The development process was smooth and the turnaround time was impressive.',
       },
       {
         id: 'r3',
-        author: 'William C.',
+        author: 'Steph Liew',
         rating: 4,
-        image: 'https://cdn.shopify.com/s/files/1/0592/2648/8885/files/A57ergonomicchairblack3.jpg?v=1745421197&width=512',
-        alt: 'Picture of a black mesh ergonomic chair',
-        text: "The chair isn't perfect. there are some rough edges, I just sanded the plastic rough edges so it doesn't scrape my skin, for the price I expected more. but other than that the chair is very comfortable, and I do like that it supports my body size and weight with no issues. The release mechanism to recline seems a bit too stiff and needs a lot of force. and locking it in place needs a hit hahaha. Overall i'd give it an 8.5/10 as i've had better finished chairs. But can't complain on the comfort!",
+        image: '/assets/Steph Liew.jpg',
+        alt: 'Steph Liew',
+        text: 'Great virtual assistant services! They helped streamline our email management and scheduling. Only wish we found them sooner. Very responsive team.',
       },
       {
         id: 'r4',
-        author: 'Kim Carlo L.',
+        author: 'James Peterson',
         rating: 5,
-        image: 'https://cdn.shopify.com/s/files/1/0592/2648/8885/products/cable-management-tray-834174.jpg?v=1693121145&width=512',
-        alt: 'Cable Management Tray - Ark Ergonomics',
-        text: 'Easy to attach. This is a must when buying their office desk',
+        image: '/assets/James Peterson.jpg',
+        alt: 'James Peterson',
+        text: 'The web development team delivered a stunning e-commerce site for us. Clean code, great UI/UX, and mobile-optimized. Could not be happier with the result!',
       },
       {
         id: 'r5',
-        author: 'Regina S.',
+        author: 'James Haley',
         rating: 4,
-        image: 'https://cdn.shopify.com/s/files/1/0592/2648/8885/products/caster-wheels-479669.jpg?v=1693121141&width=512',
-        alt: 'Caster Wheels - Ark Ergonomics',
-        text: 'Easy to install and working smoothly! Handles the desk pretty well.',
+        image: '/assets/James Haley.jpg',
+        alt: 'James Haley',
+        text: 'Solid VA support for our social media management. Content scheduling and customer engagement have never been better. A reliable partner for digital tasks.',
       },
       {
         id: 'r6',
-        author: 'Mary Jane B.',
+        author: 'James Dann',
         rating: 5,
-        image: 'https://cdn.shopify.com/s/files/1/0592/2648/8885/files/OrthoflexErgonomicChairBlack1.png?v=1772460778&width=512',
-        alt: 'review product image',
-        text: "Really worth the wait. I'm glad that this is the one that I chose. I tried sitting in for a long time to see if it was comfy, and it did not disappoint. The chair has a breathable mesh back and seat that stay comfy while working. Lumbar support is adjustable as well as the armrest. I'm happy with this purchase and hope that it will help with my back pain in the long run.",
+        image: '/assets/James Dann.jpg',
+        alt: 'James Dann',
+        text: "Outstanding service from start to finish. The VA Orbit handled our data entry, research, and calendar management with zero errors. I've recommended them to three other business owners already.",
       },
       {
         id: 'r7',
-        author: 'John Benedict L.',
+        author: 'Harry Wall',
         rating: 5,
-        image: 'https://cdn.shopify.com/s/files/1/0592/2648/8885/products/ark-desk-pro-executive-dual-motor-standing-desk-749177.jpg?v=1693121179&width=512',
-        alt: 'Ark Desk Pro - Executive Dual Motor Standing Desk - Ark Ergonomics',
-        text: 'Loveee it! Worth the bucks!',
+        image: '/assets/Harry Wall.jpg',
+        alt: 'Harry Wall',
+        text: 'Dashboard and reporting system they built for us is a game changer. Real-time data, clean visuals, and exactly what we needed to track our KPIs.',
       },
       {
         id: 'r8',
-        author: 'John Chester S.',
+        author: 'Drew Groves',
         rating: 5,
-        image: 'https://cdn.shopify.com/s/files/1/0592/2648/8885/products/desk-shelf-150702.jpg?v=1693121152&width=512',
-        alt: 'Desk Shelf - Ark Ergonomics',
-        text: 'well designed and built, I think this is the grovemade deskshelf of the Philippines',
+        image: '/assets/Drew Groves.jpg',
+        alt: 'Drew Groves',
+        text: 'They redesigned our landing page and conversions went up by 35%. The team understood our brand vision and executed it perfectly. Top-notch web development.',
       },
       {
         id: 'r9',
-        author: 'Jose Alberto M.',
+        author: 'Debbie Hussein',
         rating: 5,
-        image: 'https://cdn.shopify.com/s/files/1/0592/2648/8885/products/ark-desk-elite-premium-dual-motor-standing-desk-740103.jpg?v=1740400414&width=512',
-        alt: 'Ark Desk Elite - Premium Dual Motor Standing Desk - Ark Ergonomics',
-        text: "It’s my first standing desk so i don’t really know how it fares against others. But i did observed a couple of things: 1. It is HEAVY. Can it carry 140kg? I don’t know but i’m not going to test that. The heft definitely suggests that it can. 2. The weight is reassuring indeed. And the metal frame—along with the paint job appears to be of good quality. 3. Building it is easy and straightforward. It just took me a while because it is HEAVY. Overall a good product, and would highly suggest it to those who want a standing desk.",
+        image: '/assets/Debbie Hussein.jpg',
+        alt: 'Debbie Hussein',
+        text: "Our executive team was drowning in administrative work until we partnered with The VA Orbit. Now we focus on growth while they handle the day-to-day. Absolutely invaluable.",
+      },
+      {
+        id: 'r10',
+        author: 'Brendan Ng',
+        rating: 5,
+        image: '/assets/Brendan Ng.jpg',
+        alt: 'Brendan Ng',
+        text: 'Full-stack development for our SaaS platform was delivered on time and within budget. Clean architecture, thorough documentation, and ongoing support. Highly recommended!',
       },
     ],
     []
@@ -295,10 +305,10 @@ export default function AboutPage() {
         <div className="rich-text__wrapper rich-text__wrapper--center page-width">
           <div className="rich-text__blocks center">
             <h2 className="rich-text__heading rte inline-richtext h1">
-              Customer Reviews
+              Client Reviews
             </h2>
             <div className="rich-text__text rte">
-              <p>See what real customers are saying about our products and our customer service.</p>
+              <p>Hear from our clients about how our VA and web development services help their businesses thrive.</p>
             </div>
             <div className="rich-text__buttons">
               <a href="#about-reviews-section" className="button button--primary">
