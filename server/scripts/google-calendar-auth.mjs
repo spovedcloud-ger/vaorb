@@ -20,7 +20,7 @@ dotenv.config({ path: envPath });
 // Use GOOGLE_OAUTH_REDIRECT_URI in .env, or pass: npm run google-calendar-auth -- production
 const useProduction = process.argv.includes('production');
 const REDIRECT_URI = useProduction
-  ? 'https://vaorb-merm.vercel.app'
+  ? 'https://thevaorbit.com'
   : process.env.GOOGLE_OAUTH_REDIRECT_URI || 'http://localhost:8765/oauth2callback';
 const SCOPES = ['https://www.googleapis.com/auth/calendar'];
 
@@ -114,7 +114,7 @@ You pasted:
 
 Run again:
   npm run google-calendar-auth
-  npm run google-calendar-auth -- production   (if using vaorb-merm.vercel.app redirect)
+  npm run google-calendar-auth -- production   (if using thevaorbit.com redirect)
 `);
   process.exit(1);
 }

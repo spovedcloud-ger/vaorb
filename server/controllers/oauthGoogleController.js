@@ -1,7 +1,7 @@
 const { google } = require('googleapis');
 
 const SCOPES = ['https://www.googleapis.com/auth/calendar'];
-const PRODUCTION_REDIRECT = 'https://vaorb-merm.vercel.app';
+const PRODUCTION_REDIRECT = 'https://thevaorbit.com';
 
 function getRedirectUri() {
   return process.env.GOOGLE_OAUTH_REDIRECT_URI || PRODUCTION_REDIRECT;
