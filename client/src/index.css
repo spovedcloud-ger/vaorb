@@ -1164,13 +1164,155 @@ button.bpw-widget-btn.bpw-floating-button {
   background: #fff;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
+  .booking-calendar.calendly-style {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .booking-sidebar {
+    flex: none;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 1.25rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .booking-profile {
+    flex: 1;
+    min-width: 160px;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .booking-profile-avatar {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  .booking-profile-name {
+    font-size: 1rem;
+  }
+  .booking-meeting-info {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+    gap: 0.5rem 1rem;
+    align-items: center;
+  }
+  .meeting-info-item {
+    font-size: 0.8rem;
+  }
   .booking-layout {
     flex-direction: column;
   }
   .booking-calendar-panel {
     border-right: none;
     border-bottom: 1px solid #f0f0f0;
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-sidebar {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+  .booking-profile {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .booking-profile-avatar {
+    width: 40px;
+    height: 40px;
+  }
+  .booking-profile-name {
+    font-size: 0.9rem;
+  }
+  .booking-profile-details {
+    font-size: 0.75rem;
+  }
+  .booking-meeting-info {
+    gap: 0.35rem 0.75rem;
+  }
+  .meeting-info-item {
+    font-size: 0.75rem;
+    gap: 0.35rem;
+  }
+  .meeting-icon {
+    font-size: 1rem;
+  }
+  .booking-calendar-panel,
+  .booking-details-panel {
+    padding: 1rem;
+  }
+  .booking-step-label {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+  .booking-cal-header {
+    margin-bottom: 1rem;
+  }
+  .booking-cal-month {
+    font-size: 0.85rem;
+  }
+  .booking-nav-btn {
+    font-size: 1.2rem;
+    padding: 0 0.3rem;
+  }
+  .booking-cal-weekdays {
+    font-size: 0.65rem;
+  }
+  .booking-day-cell {
+    font-size: 0.8rem;
+  }
+  .booking-timezone-bar {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    font-size: 0.7rem;
+  }
+  .booking-slots-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    max-height: 200px;
+  }
+  .booking-slot-btn {
+    padding: 0.6rem;
+    font-size: 0.8rem;
+  }
+  .booking-placeholder {
+    padding-top: 1rem;
+  }
+  .booking-placeholder-icon {
+    font-size: 2rem;
+  }
+  .booking-placeholder p {
+    font-size: 0.85rem;
+  }
+  .booking-hint {
+    font-size: 0.75rem;
+  }
+  .booking-summary-card {
+    padding: 0.75rem;
+    font-size: 0.8rem;
+  }
+  .booking-field input,
+  .booking-field textarea {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.85rem;
+  }
+  .booking-confirm-btn {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.85rem;
+  }
+  .booking-back-btn {
+    font-size: 0.8rem;
   }
 }
 
