@@ -2,7 +2,7 @@ import { useState, useCallback, useRef } from 'react';
 
 const WELCOME = {
   role: 'assistant',
-  content: "Hi! I'm ABot, your VA Orbit assistant. Ask me about web design, development, pricing, or how we can help your business grow!",
+  content: "Hi! I'm the VAORB Assistant. Ask me about web design, development, pricing, or how we can help your business grow!",
 };
 
 export function useChat(apiBase) {

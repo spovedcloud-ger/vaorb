@@ -37,9 +37,9 @@ export default function ChatWidget({ apiBase }) {
           <div className="chat-window">
             <div className="chat-header">
               <div className="chat-header-info">
-                <div className="chat-avatar">AB</div>
+                <div className="chat-avatar">VA</div>
                 <div>
-                  <div className="chat-header-name">ABot</div>
+                  <div className="chat-header-name">VAORB Assistant</div>
                   <div className="chat-header-status">Online</div>
                 </div>
               </div>
@@ -56,7 +56,7 @@ export default function ChatWidget({ apiBase }) {
                   {msg.role === 'assistant' && <div className="chat-msg-avatar">AB</div>}
                   <div className="chat-msg-bubble">
                     <div className="chat-msg-text">{msg.content}</div>
-                    <div className="chat-msg-time">{msg.role === 'user' ? 'You' : 'ABot'}</div>
+                    <div className="chat-msg-time">{msg.role === 'user' ? 'You' : 'VAORB'}</div>
                   </div>
                 </div>
               ))}
