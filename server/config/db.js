@@ -133,7 +133,15 @@ function initLocalDB() {
 
 function saveLocalDB() {
   if (useLocalDB && dbCache) {
-    fs.writeFileSync(DB_FILE, JSON.stringify(dbCache, null, 2), 'utf8');
+    try {
+      fs.writeFileSync(DB_FILE, JSON.stringify(dbCache, null, 2), 'utf8');
+    } catch (err) {
+      if (err.code === 'EROFS') {
+        console.warn('Local DB: read-only filesystem (Vercel). Data kept in memory only, will not persist.');
+      } else {
+        console.error('Local DB write error:', err.message);
+      }
+    }
   }
 }
 
