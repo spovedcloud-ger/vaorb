@@ -22,7 +22,7 @@ export default function Header({ scrolled, showHero = true }) {
   return (
     <>
       <nav
-        className={`navbar navbar-expand-md fixed-top scrolling-navbar ${scrolled || !showHero ? 'menu-bg navbar-scrolled' : ''}`}
+        className={`navbar navbar-expand-md scrolling-navbar ${scrolled || !showHero ? 'menu-bg navbar-scrolled' : ''}`}
       >
         <div className="container">
           <a className="navbar-brand" href="#home" aria-label="The VA Orbit home">
@@ -83,9 +83,7 @@ export default function Header({ scrolled, showHero = true }) {
             <span />
             <span />
           </div>
-        ) : (
-          <div className="subpage-header-spacer" style={{ height: '70px' }} />
-        )}
+        ) : null}
 
         {showHero && (
           <div className="container hero-contents-wrap">

@@ -50,7 +50,7 @@ function App() {
             target = document.querySelector('#contact-form') || target;
           }
           if (target) {
-            const header = document.querySelector('.navbar.fixed-top') || document.querySelector('.navbar');
+            const header = document.querySelector('.navbar');
             const headerOffset = header?.offsetHeight ?? 70;
             const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
             window.scrollTo({ top: Math.max(0, targetTop - headerOffset - 20), behavior: 'smooth' });
@@ -78,7 +78,7 @@ function App() {
         target = document.querySelector('#contact-form') || target;
       }
       if (target) {
-        const header = document.querySelector('.navbar.fixed-top') || document.querySelector('.navbar');
+        const header = document.querySelector('.navbar');
         const headerOffset = header?.offsetHeight ?? 70;
         const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
         window.scrollTo({ top: Math.max(0, targetTop - headerOffset - 20), behavior: 'smooth' });

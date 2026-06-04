@@ -129,14 +129,13 @@ img {
 }
 
 .navbar {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
   background: var(--navbar-bg) !important;
   transition: background 0.3s ease;
-  will-change: transform;
 }
 
 .navbar.menu-bg,
@@ -897,7 +896,7 @@ button.bpw-widget-btn.bpw-floating-button {
 /* Responsive */
 @media (max-width: 991px) {
   .navbar {
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;
