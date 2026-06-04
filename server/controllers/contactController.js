@@ -28,10 +28,17 @@ exports.submitInquiry = async (req, res) => {
     if (isEmailConfigured()) {
       try {
         await sendInquiryNotification(inquiry);
-        await sendInquiryConfirmation(inquiry);
+        console.log(`[contact] Admin notification sent for: ${name} <${email}>`);
         emailSent = true;
       } catch (mailErr) {
-        console.error('Contact form email error:', mailErr.message);
+        console.error('[contact] Failed to send admin notification:', mailErr.message);
+      }
+      try {
+        await sendInquiryConfirmation(inquiry);
+        console.log(`[contact] Guest confirmation sent to: ${email}`);
+        emailSent = true;
+      } catch (mailErr) {
+        console.error('[contact] Failed to send guest confirmation:', mailErr.message);
       }
     } else {
       console.warn(

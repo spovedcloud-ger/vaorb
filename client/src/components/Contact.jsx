@@ -39,6 +39,7 @@ export default function Contact({ onSubmit, onBookingClick }) {
 
     try {
       const { ok, body } = await onSubmit(contactData);
+      console.log('[Contact] Submit response:', body);
       if (ok) {
         setFormStatus({
           type: 'success',
