@@ -137,7 +137,7 @@ export default function Contact({ onSubmit, onBookingClick }) {
                       type="text"
                       name="surname"
                       className="form-control shadow-none"
-                      placeholder="Your Budget (Optional)"
+                      placeholder="$ Your Budget (Optional)"
                       value={contactData.budget}
                       onChange={(e) =>
                         setContactData({ ...contactData, budget: e.target.value })
