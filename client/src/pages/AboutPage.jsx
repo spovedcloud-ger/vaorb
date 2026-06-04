@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import ChatWidget from '../components/ChatWidget';
+import { useSiteApi } from '../hooks/useSiteApi';
 
 function StarIcon({ full }) {
   if (full) {
@@ -201,6 +203,7 @@ function ReviewSlider({ reviews }) {
 
 export default function AboutPage() {
   const [navbarScrolled, setNavbarScrolled] = useState(false);
+  const { apiBase } = useSiteApi();
 
   useEffect(() => {
     document.title = "About Us - Client Reviews | The VA Orbit";
@@ -327,6 +330,7 @@ export default function AboutPage() {
         </section>
       </main>
 
+      <ChatWidget apiBase={apiBase} />
       <Footer onOpenAdmin={() => {}} />
     </>
   );

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Header from './components/Header';
 import BackToTop from './components/BackToTop';
-import { useBotpress } from './hooks/useBotpress';
+import ChatWidget from './components/ChatWidget';
 import {
   ServicesSection,
   BusinessPlanSection,
@@ -33,8 +33,6 @@ function App() {
   } = useSiteApi();
 
   const admin = useAdmin(apiBase, pricing, setPricing);
-
-  useBotpress();
 
   useEffect(() => {
     const onScroll = () => setNavbarScrolled(window.scrollY > 50);
@@ -139,6 +137,8 @@ function App() {
       <Contact onSubmit={submitContact} onBookingClick={trackBookingClick} />
 
       <Footer onOpenAdmin={() => admin.setShowAdmin(true)} />
+
+      <ChatWidget apiBase={apiBase} />
 
       <BackToTop />
 
