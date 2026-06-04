@@ -136,6 +136,7 @@ img {
   z-index: 1000;
   background: var(--navbar-bg) !important;
   transition: background 0.3s ease;
+  will-change: transform;
 }
 
 .navbar.menu-bg,

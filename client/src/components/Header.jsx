@@ -20,21 +20,12 @@ export default function Header({ scrolled, showHero = true }) {
   }, [menuOpen]);
 
   return (
-    <header id="home" className={showHero ? "hero-area" : "subpage-header"}>
-      {showHero ? (
-        <div className="overlay">
-          <span />
-          <span />
-        </div>
-      ) : (
-        <div className="subpage-header-spacer" style={{ height: '70px' }} />
-      )}
-
+    <>
       <nav
         className={`navbar navbar-expand-md fixed-top scrolling-navbar ${scrolled || !showHero ? 'menu-bg navbar-scrolled' : ''}`}
       >
         <div className="container">
-          <a className="navbar-brand" href={showHero ? "#home" : "/"} aria-label="The VA Orbit home">
+          <a className="navbar-brand" href="#home" aria-label="The VA Orbit home">
             <img src={logoImg} alt="The VA Orbit" />
           </a>
           <button
@@ -76,46 +67,51 @@ export default function Header({ scrolled, showHero = true }) {
                   Rates
                 </a>
               </li>
-              {/* <li className="nav-item">
-                <a className="nav-link page-scroll" href="#packages" onClick={closeMenu}>
-                  Packages
-                </a>
-              </li> */}
               <li className="nav-item">
                 <a className="nav-link page-scroll" href={showHero ? "#contact" : "/#contact"} onClick={closeMenu}>
                   Contact
                 </a>
               </li>
-
             </ul>
           </div>
         </div>
       </nav>
 
-      {showHero && (
-        <div className="container hero-contents-wrap">
-          <div className="row space-100">
-            <div className="col-lg-6 col-md-12 col-xs-12">
-              <div className="contents">
-                <h2 className="head-title">Reclaimed your first 20+ hours of free time yet?</h2>
-                <p>
-                  Let&apos;s upgrade your startup with premium strategic support and friction-free SOPs, to 2x, 3x, 10x your focus and ROI.
-                </p>
-                <div className="header-button">
-                  <a href="#book" className="btn btn-border-filled page-scroll">
-                    Book A Call
-                  </a>
+      <header id="home" className={showHero ? "hero-area" : "subpage-header"}>
+        {showHero ? (
+          <div className="overlay">
+            <span />
+            <span />
+          </div>
+        ) : (
+          <div className="subpage-header-spacer" style={{ height: '70px' }} />
+        )}
+
+        {showHero && (
+          <div className="container hero-contents-wrap">
+            <div className="row space-100">
+              <div className="col-lg-6 col-md-12 col-xs-12">
+                <div className="contents">
+                  <h2 className="head-title">Reclaimed your first 20+ hours of free time yet?</h2>
+                  <p>
+                    Let&apos;s upgrade your startup with premium strategic support and friction-free SOPs, to 2x, 3x, 10x your focus and ROI.
+                  </p>
+                  <div className="header-button">
+                    <a href="#book" className="btn btn-border-filled page-scroll">
+                      Book A Call
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-6 col-md-12 col-xs-12 p-0">
+                <div className="intro-img">
+                  <img src={ASSETS.intro} alt="Carl Falle digital solutions" />
                 </div>
               </div>
             </div>
-            <div className="col-lg-6 col-md-12 col-xs-12 p-0">
-              <div className="intro-img">
-                <img src={ASSETS.intro} alt="Carl Falle digital solutions" />
-              </div>
-            </div>
           </div>
-        </div>
-      )}
-    </header>
+        )}
+      </header>
+    </>
   );
 }
