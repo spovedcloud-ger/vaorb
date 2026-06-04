@@ -48,6 +48,8 @@ async function sendMail({ to, subject, text, html, replyTo }) {
     return { sent: false, skipped: true };
   }
 
+  console.log(`[email] Sending to: ${to} | subject: ${subject}`);
+
   const info = await transporter.sendMail({
     from: `"${SITE_NAME}" <${MAIL_FROM}>`,
     to,
@@ -57,6 +59,7 @@ async function sendMail({ to, subject, text, html, replyTo }) {
     html,
   });
 
+  console.log(`[email] Delivered to: ${to} | messageId: ${info.messageId}`);
   return { sent: true, messageId: info.messageId };
 }
 
@@ -261,9 +264,22 @@ async function sendBookingConfirmationToGuest(booking) {
 }
 
 async function sendBookingEmails(booking) {
-  await sendBookingNotificationToAdmin(booking);
-  await sendBookingConfirmationToGuest(booking);
-  return { sent: true };
+  const results = { admin: false, guest: false };
+  try {
+    await sendBookingNotificationToAdmin(booking);
+    results.admin = true;
+    console.log(`[email] Admin notification sent for booking: ${booking.name} <${booking.email}>`);
+  } catch (err) {
+    console.error('[email] Failed to send admin notification:', err.message);
+  }
+  try {
+    await sendBookingConfirmationToGuest(booking);
+    results.guest = true;
+    console.log(`[email] Guest confirmation sent to: ${booking.email}`);
+  } catch (err) {
+    console.error('[email] Failed to send guest confirmation:', err.message);
+  }
+  return { sent: results.admin || results.guest, results };
 }
 
 module.exports = {
