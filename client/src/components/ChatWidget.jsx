@@ -45,7 +45,8 @@ export default function ChatWidget({ apiBase }) {
               </div>
               <div className="chat-header-actions">
                 <button className="chat-header-btn" onClick={resetChat} title="New conversation">&#x21bb;</button>
-                <button className="chat-header-btn" onClick={() => setOpen(false)} title="Close">&times;</button>
+                <button className="chat-header-btn chat-minimize-btn" onClick={() => setOpen(false)} title="Minimize">&minus;</button>
+                <button className="chat-header-btn chat-close-btn" onClick={() => setOpen(false)} title="Close">&times;</button>
               </div>
             </div>
 

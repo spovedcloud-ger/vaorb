@@ -807,7 +807,7 @@ textarea.form-control {
   width: 360px;
   max-width: calc(100vw - 32px);
   height: 520px;
-  max-height: calc(100vh - 180px);
+  max-height: calc(100vh - 240px);
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 8px 40px rgba(0,0,0,0.18);
@@ -881,6 +881,21 @@ textarea.form-control {
 .chat-header-btn:hover {
   opacity: 1;
   background: rgba(255,255,255,0.15);
+}
+
+.chat-minimize-btn {
+  font-size: 1.5rem;
+  padding: 2px 8px;
+}
+
+.chat-close-btn {
+  font-size: 1.4rem;
+  opacity: 0.6;
+}
+
+.chat-close-btn:hover {
+  opacity: 1;
+  background: rgba(255,60,60,0.25);
 }
 
 .chat-body {
@@ -1039,8 +1054,8 @@ textarea.form-control {
   .chat-window {
     right: -12px;
     width: calc(100vw - 24px);
-    height: 480px;
-    max-height: calc(100vh - 160px);
+    height: 440px;
+    max-height: calc(100vh - 200px);
   }
   .chat-fab {
     width: 50px;
