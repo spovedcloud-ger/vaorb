@@ -25,7 +25,7 @@ export default function Header({ scrolled, showHero = true }) {
         className={`navbar navbar-expand-md scrolling-navbar ${scrolled || !showHero ? 'menu-bg navbar-scrolled' : ''}`}
       >
         <div className="container">
-          <a className="navbar-brand" href="#home" aria-label="The VA Orbit home">
+          <a className="navbar-brand" href="/" aria-label="The VA Orbit home">
             <img src={logoImg} alt="The VA Orbit" />
           </a>
           <button

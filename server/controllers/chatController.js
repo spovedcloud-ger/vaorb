@@ -42,7 +42,7 @@ exports.chat = async (req, res) => {
     if (!config) {
       return res.status(503).json({
         reply:
-          `Hi! I'm ABot. Live AI chat isn't configured on the server yet. Please use the contact form on this page or email ${CONTACT_EMAIL} — we'll respond quickly!`,
+          `Hi! Live AI chat isn't configured on the server yet. Please use the contact form on this page or email ${CONTACT_EMAIL} — we'll respond quickly!`,
         configured: false,
       });
     }
