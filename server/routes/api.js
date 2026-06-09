@@ -37,6 +37,7 @@ router.post('/contact', [
 // Traffic Telemetry
 router.post('/analytics/view', analyticsController.trackView);
 router.post('/analytics/click-booking', analyticsController.trackBookingClick);
+router.post('/analytics/heartbeat', analyticsController.heartbeat);
 
 // AI chat (OpenAI-compatible: OpenAI, Groq, OpenRouter, etc.)
 router.get('/chat/status', chatController.getChatStatus);

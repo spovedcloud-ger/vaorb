@@ -1,4 +1,5 @@
 const { dbRepo } = require('../config/db');
+const { heartbeat } = require('../services/liveVisitors');
 
 exports.trackView = async (req, res) => {
   try {
@@ -18,6 +19,12 @@ exports.trackBookingClick = async (req, res) => {
     console.error('Track booking error:', error);
     res.status(500).json({ message: 'Telemetry error logging booking action' });
   }
+};
+
+exports.heartbeat = (req, res) => {
+  const sessionId = req.body?.sessionId || req.ip;
+  const count = heartbeat(sessionId);
+  res.json({ live: count });
 };
 
 exports.getAnalyticsSummary = async (req, res) => {

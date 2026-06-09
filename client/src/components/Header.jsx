@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { EXTERNAL_LINKS, ASSETS } from '../data/siteContent';
 import logoImg from '../assets/TheVAorbitMAIN2.png';
+import { useLiveCount } from '../hooks/useLiveCount';
 
 export default function Header({ scrolled, showHero = true }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const liveCount = useLiveCount(import.meta.env.VITE_API_URL || '/api');
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -71,6 +73,12 @@ export default function Header({ scrolled, showHero = true }) {
                 <a className="nav-link page-scroll" href={showHero ? "#contact" : "/#contact"} onClick={closeMenu}>
                   Contact
                 </a>
+              </li>
+              <li className="nav-item nav-item-live">
+                <span className="nav-link live-count">
+                  <span className="live-dot" />
+                  {liveCount}
+                </span>
               </li>
             </ul>
           </div>

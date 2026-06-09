@@ -195,6 +195,39 @@ img {
   opacity: 0.9;
 }
 
+.live-count {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  opacity: 0.85;
+  white-space: nowrap;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  animation: livePulse 2s infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 5px rgba(74, 222, 128, 0); }
+}
+
+@media (max-width: 480px) {
+  .nav-item-live {
+    border-bottom: none !important;
+    padding-top: 0.25rem;
+  }
+  .live-count {
+    font-size: 0.72rem;
+    opacity: 0.7;
+  }
+}
+
 .btn-singin {
   background-color: var(--brand-green) !important;
   color: #fff !important;
